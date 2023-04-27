@@ -7,8 +7,24 @@ pipeline {
             }
         }        
         stage('Build') {
+            steps {
+                dir('code') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('code') {
+                    sh 'npm test'
+                }
+            }
+        }
+        stage('Build Docker Image') {
             steps {                
-                    sh 'docker build -t cowsay-node .'                
+                dir('code') {
+                    sh 'docker build -t cowsay-node .'
+                }                
             }
         }
         stage('Run') {
