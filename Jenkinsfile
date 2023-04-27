@@ -10,6 +10,7 @@ pipeline {
             steps {
                 dir('code') {
                     sh 'npm install'
+                    sh 'npm build'
                 }
             }
         }
