@@ -9,26 +9,31 @@ pipeline {
         stage('Build') {
             steps {
                 dir('code') {
-                    sh 'npm install'
-                    
+                    sh 'docker build -t cowsay-node .'
                 }
             }
         }
         stage('Run') {
             steps {
                 dir('code') {
-                    sh 'docker run'
+                    sh 'docker run -d -p 8080:8080 cowsay-node'
                 }
             }
         }
         stage('Test') {
             steps {
-                echo 'npm test'
+                dir('code') {
+                    sh 'curl -s http://localhost:8080 | grep "Welcome to Node.js v"'
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                dir('code') {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                    sh 'docker tag cowsay-node $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
+                    sh 'docker push $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
+                }
             }
         }
     }
