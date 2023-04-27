@@ -1,6 +1,11 @@
 pipeline {
     agent any
    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/NiRo828/cowsay-node.git'
+            }
+        }        
         stage('Build') {
             steps {
                 sh 'npm install'
