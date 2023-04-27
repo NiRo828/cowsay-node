@@ -7,10 +7,8 @@ pipeline {
             }
         }        
         stage('Build') {
-            steps {
-                dir('code') {
-                    sh 'docker build -t cowsay-node .'
-                }
+            steps {                
+                    sh 'docker build -t cowsay-node .'                
             }
         }
         stage('Run') {
