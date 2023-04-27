@@ -15,7 +15,9 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh 'npm start'
+                dir('code') {
+                    sh 'npm start'
+                }
             }
         }
         stage('Test') {
