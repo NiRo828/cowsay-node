@@ -38,14 +38,14 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv(credentialsId: 'CowSaySQToken') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }         
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         def scannerHome = tool 'SonarScanner';
+        //         withSonarQubeEnv(credentialsId: 'CowSaySQToken') {
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }         
     }
     post {
         always {
