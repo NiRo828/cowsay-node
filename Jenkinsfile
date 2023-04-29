@@ -30,7 +30,7 @@ pipeline {
         stage('Run') {
             steps {
                 dir('code') {
-                    sh 'docker run -d -p 8080:8080 cowsay-node'
+                    sh 'docker run'
                 }
             }
         }
