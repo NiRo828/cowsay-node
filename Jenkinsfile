@@ -6,20 +6,20 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/NiRo828/cowsay-node.git'
             }
         }        
-        stage('Build') {
-            steps {
-                dir('code') {
-                    sh 'npm install'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                dir('code') {
-                    sh 'npm test'
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'npm install'
+        //         }
+        //     }
+        // }
+        // stage('Test') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'npm test'
+        //         }
+        //     }
+        // }
         stage('Build Docker Image') {
             steps {                
                 dir('code') {
