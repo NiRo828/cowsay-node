@@ -9,7 +9,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv() {
+                withSonarQubeEnv(credentialsId: 'CowSaySQToken') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
