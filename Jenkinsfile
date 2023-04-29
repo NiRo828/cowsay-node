@@ -6,6 +6,14 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/NiRo828/cowsay-node.git'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                def scannerHome = tool 'SonarScanner';
+                withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }         
         stage('Build') {
             steps {
                 dir('code') {
@@ -29,4 +37,10 @@ pipeline {
             echo 'This will run only if successful'
         }
     }
+}
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  
 }
