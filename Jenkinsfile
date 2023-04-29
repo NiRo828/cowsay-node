@@ -9,17 +9,32 @@ pipeline {
         stage('Build') {
             steps {
                 dir('code') {
-                    sh 'npm install cowsay'
-                    sh 'npm install lolcatjs'
-                    sh 'npm install fortune'
-                    
+                    parallel(
+                        installCowsay: {
+                            nodejs(nodeJSInstallationName: 'Node.js LTS') {
+                                sh 'npm install cowsay'
+                            }
+                        },
+                        installLolcatjs: {
+                            nodejs(nodeJSInstallationName: 'Node.js LTS') {
+                                sh 'npm install lolcatjs'
+                            }
+                        },
+                        installFortune: {
+                            nodejs(nodeJSInstallationName: 'Node.js LTS') {
+                                sh 'npm install fortune'
+                            }
+                        }
+                    )
                 }
             }
         }
         stage('Run') {
             steps {
                 dir('code') {
-                    sh 'npm run fortune | cowsay | lolcatjs '
+                    nodejs(nodeJSInstallationName: 'Node.js LTS') {
+                        sh 'npm run run-nycowsay'
+                    }
                 }
             }
         }
@@ -44,3 +59,14 @@ pipeline {
 
 
 
+
+        // stage('Build') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'npm install cowsay'
+        //             sh 'npm install lolcatjs'
+        //             sh 'npm install fortune'
+                    
+        //         }
+        //     }
+        // }
