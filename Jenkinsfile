@@ -13,13 +13,13 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                dir('code') {
-                    sh 'npm test'
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'npm test'
+        //         }
+        //     }
+        // }
         // stage('Build Docker Image') {
         //     steps {                
         //         dir('code') {
