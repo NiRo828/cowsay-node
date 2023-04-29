@@ -30,7 +30,7 @@ pipeline {
         stage('Run') {
             steps {
                 dir('code') {
-                    sh 'docker run'
+                    sh 'npm run'
                 }
             }
         }
