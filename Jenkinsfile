@@ -13,13 +13,13 @@ pipeline {
                 }
             }
         }
-        // stage('Test') {
-        //     steps {
-        //         dir('code') {
-        //             sh 'npm test'
-        //         }
-        //     }
-        // }
+        stage('Test') {
+            steps {
+                dir('code') {
+                    sh 'npm test'
+                }
+            }
+        }
         // stage('Build Docker Image') {
         //     steps {                
         //         dir('code') {
@@ -34,13 +34,13 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                dir('code') {
-                    sh 'curl -s http://localhost:8080 | grep "Welcome to Node.js v"'
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'curl -s http://localhost:8080 | grep "Welcome to Node.js v"'
+        //         }
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 dir('code') {
