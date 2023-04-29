@@ -6,6 +6,23 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/NiRo828/cowsay-node.git'
             }
         }
+        stage('Build') {
+            steps {
+                dir('code') {
+                    sh 'npm install cowsay'
+                    sh 'npm install lolcatjs'
+                    sh 'npm install fortune'
+                    
+                }
+            }
+        }
+        stage('Run') {
+            steps {
+                dir('code') {
+                    sh 'npm run fortune | cowsay | lolcatjs '
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 def scannerHome = tool 'SonarScanner';
@@ -14,20 +31,6 @@ pipeline {
                 }
             }
         }         
-        stage('Build') {
-            steps {
-                dir('code') {
-                    sh 'npm install'
-                }
-            }
-        }
-        stage('Run') {
-            steps {
-                dir('code') {
-                    sh 'npm run'
-                }
-            }
-        }
     }
     post {
         always {
