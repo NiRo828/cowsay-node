@@ -41,15 +41,15 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Deploy') {
-            steps {
-                dir('code') {
-                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
-                    sh 'docker tag cowsay-node $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
-                    sh 'docker push $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         dir('code') {
+        //             sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+        //             sh 'docker tag cowsay-node $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
+        //             sh 'docker push $DOCKER_USER/cowsay-node:$BUILD_NUMBER'
+        //         }
+        //     }
+        // }
     }
     post {
         always {
