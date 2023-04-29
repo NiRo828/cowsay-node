@@ -6,13 +6,13 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/NiRo828/cowsay-node.git'
             }
         }        
-        // stage('Build') {
-        //     steps {
-        //         dir('code') {
-        //             sh 'npm install'
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                dir('code') {
+                    sh 'npm install'
+                }
+            }
+        }
         // stage('Test') {
         //     steps {
         //         dir('code') {
@@ -20,13 +20,13 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Build Docker Image') {
-            steps {                
-                dir('code') {
-                    sh 'docker build -t cowsay-node .'
-                }                
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {                
+        //         dir('code') {
+        //             sh 'docker build -t cowsay-node .'
+        //         }                
+        //     }
+        // }
         stage('Run') {
             steps {
                 dir('code') {
